@@ -1,76 +1,60 @@
 // Styled Components
 import styled from 'styled-components';
-import {Colors, media} from './Global';
+import { Colors, media } from './Global';
 
 const H1 = styled.h1`
-    color: ${props => (props.active ? Colors.Active : Colors.Text)}
-    font-weight: normal;
-    font-family: serif;
+    color: ${props => (props.active ? Colors.Active : Colors.Primary)}
     text-align: center;
-    text-transform: capitalize;
+    font-family: AsparagusSprouts
+    font-size: 40px;
 `;
 
 const H2 = styled.h2`
-    color: ${props => (props.active ? Colors.Active : Colors.Text)}
-    font-weight: normal;
-    font-family: serif;
+    color: ${props => (props.active ? Colors.Active : Colors.Primary)}
     text-align: center;
-    text-transform: capitalize;
-
+    font-family: AsparagusSprouts
 `;
 
 const H3 = styled.h3`
-    color: ${props => (props.active ? Colors.Active : Colors.Text)}
-    font-weight: normal;
-    font-family: serif;
+    color: ${props => (props.active ? Colors.Active : Colors.Primary)}
     text-align: center;
-    text-transform: capitalize;
-
+    font-family: AsparagusSprouts
 `;
 
 const H4 = styled.h4`
-    color: ${props => (props.active ? Colors.Active : Colors.Text)}
-    font-weight: normal;
-    font-family: serif;
+    color: ${props => (props.active ? Colors.Active : Colors.Primary)}
     text-align: center;
-    text-transform: capitalize;
-    
+    font-family: AsparagusSprouts  
 `;
 
 const H5 = styled.h5`
-    color: ${props => (props.active ? Colors.Active : Colors.Text)}
-    font-weight: normal;
-    font-family: serif;
+    color: ${props => (props.active ? Colors.Active : Colors.Primary)}
     text-align: center;
-    text-transform: capitalize;
-    
+    font-family: AsparagusSprouts
 `;
 
 const H6 = styled.h6`
-    color: ${props => (props.active ? Colors.Active : Colors.Text)}
-    font-weight: normal;
-    font-family: serif;
+    color: ${props => (props.active ? Colors.Active : Colors.Primary)}
     text-align: center;
-    text-transform: capitalize;
-    
+    font-family: AsparagusSprouts 
 `;
 
 const Paragraph = styled.p`
-    font-size: 16;
-    font-weight: normal;
-    color: ${props => (props.active ? Colors.Active : Colors.Text)}
-
+    font-size: 25px;
+    font-family: AsparagusSprouts 
+    color: ${props => (props.active ? Colors.Active : Colors.Primary)};
 `;
 
 const ParagraphMeta = styled.p`
     font-size: 12;
-    font-weight: light;
-    color: ${props => (props.active ? Colors.Active : Colors.Text)}
+    font-family: AsparagusSprouts 
+    color: ${props => (props.active ? Colors.Active : Colors.Primary)};
 `;
 
 const Description = styled.p`
     font-size: 14;
     font-weight: light;
+    font-family: AsparagusSprouts 
 `;
 
 export { H1, H2, H3, H4, H5, H6, Paragraph, ParagraphMeta, Description };
