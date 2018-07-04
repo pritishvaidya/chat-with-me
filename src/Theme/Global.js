@@ -1,6 +1,5 @@
 // @flow
-import { css } from 'styled-components';
-import { injectGlobal } from 'styled-components';
+import { css, injectGlobal } from 'styled-components';
 
 import AsparagusSprouts from '../Fonts/AsparagusSprouts.ttf';
 

@@ -13,10 +13,9 @@ type Props = {
 };
 type State = {};
 
-class Labels extends Component<Props, State> {
+class Sidebar extends Component<Props, State> {
     render() {
         const { activeLabel, setActiveLabel } = this.props;
-        console.log(activeLabel)
         return (
             <LabelsWrapper>
                 <Label active={activeLabel === 'professional'} onClick={() => setActiveLabel('professional')}>
@@ -40,42 +39,26 @@ class Labels extends Component<Props, State> {
 }
 
 const mapStateToProps = state => ({
-    activeLabel: state.labels.label,
+    activeLabel: state.sidebar.label,
 });
 
 const mapDispatchToProps = dispatch => ({
     setActiveLabel: label => dispatch(setActiveLabel(label)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Labels);
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
 
 const LabelsWrapper = styled.div`
-    padding-top: 30px;
-    padding-bottom: 30px;
-    height: 150px;
-    background-color: ${Colors.SecondaryBackground};
-    display: flex;
-    flex-direction: row;
+    padding-top: 150px;
+    background-color: rgba(0,0,0, 0.3);
     align-items: center;
-    justify-content: center;
+    height: ${window.innerHeight - 150}px;
+    width: 400px
 `;
 
 const Label = styled.div`
-    height: 70px;
+    height: 100px;
     display: flex;
-    padding-left: 50px;
-    padding-right: 50px;
     align-items: center;
     justify-content: center;
-    background-color: ${props =>
-        props.active ? Colors.Primary : Colors.BackgroundLabel};
-    margin: 10px;
-    border-radius: 37.5px;
-    box-shadow: ${props =>
-        props.active
-            ? `0px 0px 20px 5px ${Colors.Shadow}`
-            : `0px 0px 7px 0.5px ${Colors.Shadow}`};
-    &: hover {
-        box-shadow: 0px 0px 20px 5px ${Colors.Shadow};
-    }
 `;
