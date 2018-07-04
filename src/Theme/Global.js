@@ -31,7 +31,8 @@ const media = Object.keys(sizes).reduce((accumulator, label) => {
 }, {});
 
 const Colors = {
-  Primary: '#8955e4',
+  Primary: '#f9890e',
+  Secondary: '#8955e4',
   Background: '#ffffff',
   BackgroundLabel: '#f2f3ff',
   SecondaryBackground: '#f3f4fd',
