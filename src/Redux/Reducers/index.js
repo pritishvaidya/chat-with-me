@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import MainReducer from './MainRedux'
 
 const RootReducer = combineReducers({
-  labels: MainReducer.labels
+  sidebar: MainReducer.sidebar
 })
 
 export default RootReducer
