@@ -67,21 +67,21 @@ class PersonalityAvatar extends Component<Props, State> {
         }
 
         this.currentAnimationSequence = delay(5000, () => change(0, true))
-            .delay(1000, () => change(1))
-            .delay(1000, () => change(2))
-            .delay(1000, () => change(3))
-            .delay(1000, () => change(4))
-            .delay(1000, () => change(3))
-            .delay(1000, () => change(2))
-            .delay(1000, () => change(1))
-            .delay(1000, () => change(0))
-            .delay(1000, () => this.blink());
+            .delay(75, () => change(1))
+            .delay(75, () => change(2))
+            .delay(75, () => change(3))
+            .delay(100, () => change(4))
+            .delay(75, () => change(3))
+            .delay(75, () => change(2))
+            .delay(75, () => change(1))
+            .delay(75, () => change(0))
+            .delay(75, () => this.blink());
     };
 
     render() {
         return (
             <AvatarWrapper ref={'avatar'}>
-                <ImageBackground src={Professional.Background} />
+                <ImageBackground src={this.animationImages.Background} />
                 <Image src={this.state.animationSequenceImage} />
             </AvatarWrapper>
         );
@@ -104,7 +104,7 @@ const AvatarWrapper = styled.div`
 `;
 
 const ImageBackground = styled.img`
-  height: 600px;
+  height: 550px;
   width: 100%
   filter: blur(10px);
 `;
@@ -112,6 +112,6 @@ const ImageBackground = styled.img`
 const Image = styled.img`
   position: absolute;
   bottom: 0
-  height: 600px
+  height: 550px
   left: 40%
 `;
