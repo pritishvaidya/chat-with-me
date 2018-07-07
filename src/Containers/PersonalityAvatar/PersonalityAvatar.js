@@ -6,6 +6,18 @@ import { Colors } from '../../Theme/Global';
 import Utils from '../../Utils';
 
 import Professional from '../../Assets/Professional';
+import MetalMusic from '../../Assets/MetalMusic';
+import MultiplayerGames from '../../Assets/MultiplayerGames';
+import FlamencoGuitar from '../../Assets/FlamencoGuitar';
+import Anime from '../../Assets/Anime'
+
+const animationImages = {
+    professional: Professional,
+    metal: MetalMusic,
+    games: MultiplayerGames,
+    guitar: FlamencoGuitar,
+    anime: Anime
+}
 
 type Props = {};
 type State = {
@@ -17,21 +29,31 @@ class PersonalityAvatar extends Component<Props, State> {
         super(props);
         this.state = {
             animationSequenceImage: Professional.Normal,
+            label: props.label
         };
         this.currentAnimationSequence = null;
-        this.animationImages = null;
+        this.animationImages = animationImages.professional;
     }
 
     componentDidMount() {
         this.blink();
     }
 
+    shouldComponentUpdate(nextProps) {
+        if(nextProps.label !== this.state.label) {
+            this.setState({animationSequenceImage: animationImages[nextProps.label].Normal, label: nextProps.label})
+            this.animationImages = animationImages[nextProps.label]
+        }
+        return true
+    }
+
+
     changeAnimationSequence = (seq, start) => {
         this.setState({
             animationSequenceImage:
                 seq === 0
-                    ? Professional.Normal
-                    : Professional.Blinking[seq - 1],
+                    ? this.animationImages.Normal
+                    : this.animationImages.Blinking[seq - 1],
         });
     };
 
@@ -44,21 +66,19 @@ class PersonalityAvatar extends Component<Props, State> {
             this.currentAnimationSequence.cancel();
         }
 
-        this.animationImages = Professional.Blinking;
         this.currentAnimationSequence = delay(5000, () => change(0, true))
-            .delay(75, () => change(1))
-            .delay(75, () => change(2))
-            .delay(75, () => change(3))
-            .delay(75, () => change(4))
-            .delay(250, () => change(3))
-            .delay(75, () => change(2))
-            .delay(75, () => change(1))
-            .delay(75, () => change(0))
-            .delay(75, () => this.blink());
+            .delay(1000, () => change(1))
+            .delay(1000, () => change(2))
+            .delay(1000, () => change(3))
+            .delay(1000, () => change(4))
+            .delay(1000, () => change(3))
+            .delay(1000, () => change(2))
+            .delay(1000, () => change(1))
+            .delay(1000, () => change(0))
+            .delay(1000, () => this.blink());
     };
 
     render() {
-        console.log(this.state.animationSequenceImage);
         return (
             <AvatarWrapper ref={'avatar'}>
                 <ImageBackground src={Professional.Background} />
@@ -68,7 +88,9 @@ class PersonalityAvatar extends Component<Props, State> {
     }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  label: state.sidebar.label
+});
 
 const mapDispatchToProps = dispatch => ({});
 
