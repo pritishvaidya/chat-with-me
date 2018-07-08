@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -80,10 +79,12 @@ class PersonalityAvatar extends Component<Props, State> {
 
     render() {
         return (
+          <Wrapper>
             <AvatarWrapper ref={'avatar'}>
                 <ImageBackground src={this.animationImages.Background} />
                 <Image src={this.state.animationSequenceImage} />
             </AvatarWrapper>
+          </Wrapper>
         );
     }
 }
@@ -95,6 +96,11 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PersonalityAvatar);
+
+const Wrapper = styled.div`
+  display: flex;
+  flex: 1;
+`
 
 const AvatarWrapper = styled.div`
   display: flex;
