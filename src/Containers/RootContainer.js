@@ -15,6 +15,8 @@ import { Colors, media } from '../Theme/Global';
 // Components
 import SidebarContent from './Sidebar'
 import PersonalityAvatar from './PersonalityAvatar'
+import Questions from './Questions'
+import Answers from './Answers'
 
 type Props = {
   open: boolean,
@@ -71,6 +73,8 @@ class RootContainer extends Component<Props, State> {
             {!open ? <Menu color={Colors.Primary} size={60} /> : <Back color={Colors.Primary} size={60} />}
           </IconsWrapper>
           <PersonalityAvatar/>
+          <Answers/>
+          <Questions/>
         </Wrapper>
       </Sidebar>
     );
@@ -88,6 +92,9 @@ const mapDispatchToProps = dispatch => ({
 export default connect(mapStateToProps, mapDispatchToProps)(RootContainer);
 
 const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: ${window.innerHeight}px
     background-color: ${Colors.Background};
     overflow-x: hidden;
 `;

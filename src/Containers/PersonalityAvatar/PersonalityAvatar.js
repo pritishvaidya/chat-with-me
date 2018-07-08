@@ -8,15 +8,15 @@ import Professional from '../../Assets/Professional';
 import MetalMusic from '../../Assets/MetalMusic';
 import MultiplayerGames from '../../Assets/MultiplayerGames';
 import FlamencoGuitar from '../../Assets/FlamencoGuitar';
-import Anime from '../../Assets/Anime'
+import Anime from '../../Assets/Anime';
 
 const animationImages = {
     professional: Professional,
     metal: MetalMusic,
     games: MultiplayerGames,
     guitar: FlamencoGuitar,
-    anime: Anime
-}
+    anime: Anime,
+};
 
 type Props = {};
 type State = {
@@ -28,7 +28,7 @@ class PersonalityAvatar extends Component<Props, State> {
         super(props);
         this.state = {
             animationSequenceImage: Professional.Normal,
-            label: props.label
+            label: props.label,
         };
         this.currentAnimationSequence = null;
         this.animationImages = animationImages.professional;
@@ -39,13 +39,15 @@ class PersonalityAvatar extends Component<Props, State> {
     }
 
     shouldComponentUpdate(nextProps) {
-        if(nextProps.label !== this.state.label) {
-            this.setState({animationSequenceImage: animationImages[nextProps.label].Normal, label: nextProps.label})
-            this.animationImages = animationImages[nextProps.label]
+        if (nextProps.label !== this.state.label) {
+            this.setState({
+                animationSequenceImage: animationImages[nextProps.label].Normal,
+                label: nextProps.label,
+            });
+            this.animationImages = animationImages[nextProps.label];
         }
-        return true
+        return true;
     }
-
 
     changeAnimationSequence = (seq, start) => {
         this.setState({
@@ -79,45 +81,38 @@ class PersonalityAvatar extends Component<Props, State> {
 
     render() {
         return (
-          <Wrapper>
             <AvatarWrapper ref={'avatar'}>
                 <ImageBackground src={this.animationImages.Background} />
                 <Image src={this.state.animationSequenceImage} />
             </AvatarWrapper>
-          </Wrapper>
         );
     }
 }
 
 const mapStateToProps = state => ({
-  label: state.sidebar.label
+    label: state.sidebar.label,
 });
 
 const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PersonalityAvatar);
 
-const Wrapper = styled.div`
-  display: flex;
-  flex: 1;
-`
-
 const AvatarWrapper = styled.div`
-  display: flex;
-  flex: 1;
-  background-color: ${Colors.Background}
+  display: flex
+  width: ${window.innerWidth}px
+  height: ${window.innerHeight * 0.6}px
   position: relative
 `;
 
 const ImageBackground = styled.img`
-  height: 550px;
+  flex: 1
   width: 100%
   filter: blur(10px);
 `;
 
 const Image = styled.img`
   position: absolute;
-  bottom: 0
-  height: 550px
+  top: 0
+  height: ${window.innerHeight * 0.6}px
   left: 40%
 `;
