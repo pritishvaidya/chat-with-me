@@ -1,2 +1,3 @@
 export const SET_ACTIVE_LABEL = 'app/SET_ACTIVE_LABEL';
 export const SET_SIDEBAR_STATE = 'app/SET_SIDEBAR_STATE';
+export const SET_CONVERSATION = 'app/SET_CONVERSATION';

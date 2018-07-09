@@ -1,3 +1,2 @@
-import Questions from './Questions'
-
-export default Questions
+import Questions from './Questions';
+export default Questions;

@@ -3,7 +3,8 @@ import { combineReducers } from 'redux';
 import MainReducer from './MainRedux'
 
 const RootReducer = combineReducers({
-  sidebar: MainReducer.sidebar
+  sidebar: MainReducer.sidebar,
+  conversation: MainReducer.conversation
 })
 
 export default RootReducer

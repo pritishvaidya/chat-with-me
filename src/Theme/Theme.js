@@ -1,6 +1,6 @@
 // Styled Components
 import styled from 'styled-components';
-import { Colors, media } from './Global';
+import { Colors } from './Global';
 
 const H1 = styled.h1`
     color: ${props => (props.active ? Colors.Active : Colors.Primary)}

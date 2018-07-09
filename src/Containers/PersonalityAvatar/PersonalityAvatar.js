@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { Colors } from '../../Theme/Global';
 import Utils from '../../Utils';
 
 import Professional from '../../Assets/Professional';
@@ -18,12 +17,7 @@ const animationImages = {
     anime: Anime,
 };
 
-type Props = {};
-type State = {
-    animationSequenceImage: any,
-};
-
-class PersonalityAvatar extends Component<Props, State> {
+class PersonalityAvatar extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -105,14 +99,17 @@ const AvatarWrapper = styled.div`
 `;
 
 const ImageBackground = styled.img`
+  display: flex;
   flex: 1
   width: 100%
   filter: blur(10px);
 `;
 
 const Image = styled.img`
-  position: absolute;
-  top: 0
-  height: ${window.innerHeight * 0.6}px
-  left: 40%
+    position: absolute;
+    top: 0;
+    margin: auto;
+    right: 0;
+    left: 0;
+    height: ${window.innerHeight * 0.50}px;
 `;

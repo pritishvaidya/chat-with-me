@@ -1,6 +1,6 @@
-export default (Conversations = {
-    personality: 'Professional',
-    personalityId: 1,
+export default {
+    personality: 'Anime',
+    personalityId: 2,
     conversations: [
         {
             id: '1',
@@ -74,35 +74,35 @@ export default (Conversations = {
         },
         {
             id: '1-1',
-            parentId: '',
+            parentId: '1',
             text: 'How do you deal with pressure or stressful situations?',
             mood: 'normal',
             sound: 'okay',
         },
         {
             id: '2-1',
-            parentId: '',
+            parentId: '1',
             text: 'How do you deal with pressure or stressful situations?',
             mood: 'normal',
             sound: 'okay',
         },
         {
             id: '3-1',
-            parentId: '',
+            parentId: '1',
             text: 'How do you deal with pressure or stressful situations?',
             mood: 'normal',
             sound: 'okay',
         },
         {
             id: '4-1',
-            parentId: '',
+            parentId: '1',
             text: 'How do you deal with pressure or stressful situations?',
             mood: 'normal',
             sound: 'okay',
         },
         {
             id: '5-1',
-            parentId: '',
+            parentId: '1',
             text: 'How do you deal with pressure or stressful situations?',
             mood: 'normal',
             sound: 'okay',
@@ -143,4 +143,4 @@ export default (Conversations = {
             sound: 'okay',
         },
     ],
-});
+};
