@@ -103,6 +103,7 @@ const ImageBackground = styled.img`
   flex: 1
   width: 100%
   filter: blur(10px);
+  height: ${window.innerHeight * 0.5}px;
 `;
 
 const Image = styled.img`
@@ -111,5 +112,5 @@ const Image = styled.img`
     margin: auto;
     right: 0;
     left: 0;
-    height: ${window.innerHeight * 0.50}px;
+    height: ${window.innerHeight * 0.5}px;
 `;

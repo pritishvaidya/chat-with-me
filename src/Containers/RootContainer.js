@@ -17,6 +17,7 @@ import SidebarContent from './Sidebar';
 import PersonalityAvatar from './PersonalityAvatar';
 import Questions from './Questions';
 import Answers from './Answers';
+import AudioPlayer from './Audio'
 
 type Props = {
     open: boolean,
@@ -86,6 +87,7 @@ class RootContainer extends Component<Props, State> {
                     <PersonalityAvatar />
                     <Answers />
                     <Questions />
+                    <AudioPlayer/>
                 </Wrapper>
             </Sidebar>
         );
