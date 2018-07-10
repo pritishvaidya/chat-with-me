@@ -1,7 +1,7 @@
 import {
     SET_ACTIVE_LABEL,
     SET_SIDEBAR_STATE,
-    SET_CONVERSATION,
+    SET_CURRENT_CONVERSATION,
 } from '../Types';
 
 import Anime from '../../Data/Anime';
@@ -23,7 +23,8 @@ const conversationState = {
       games: MultiplayerGames,
       guitar: FlamencoGuitar,
       anime: Anime,
-    }
+    },
+    currentConversation: Professional.conversations.slice(0, 4)
 };
 
 const sidebar = (state = initialState, action) => {
@@ -36,8 +37,8 @@ const sidebar = (state = initialState, action) => {
 };
 
 const conversation = (state = conversationState, action) => {
-    if (action.type === SET_CONVERSATION) {
-        return { ...state, conversation: action.conversation };
+    if (action.type === SET_CURRENT_CONVERSATION) {
+        return { ...state, currentConversation: action.conversation };
     }
     return state;
 };

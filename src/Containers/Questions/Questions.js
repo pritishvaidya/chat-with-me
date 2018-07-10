@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Colors } from '../../Theme/Global';
 import { Paragraph } from '../../Theme/Theme';
 
-import { setConversation } from '../../Redux/Actions';
+import { setCurrentConversation } from '../../Redux/Actions';
 
 class Questions extends Component {
     constructor(props) {
@@ -16,14 +16,20 @@ class Questions extends Component {
     }
 
     setConversations = (id) => {
-
+        const { conversations, personality, setCurrentConversation } = this.props
+        const subsequentConversations = conversations[personality].conversations.filter(conversation => conversation.parentId === id)
+        if(subsequentConversations.length > 0) {
+          setCurrentConversation(subsequentConversations)
+        } else {
+            // render new parents
+        }
     }
 
     render() {
-        const { conversations, personality } = this.props;
+        const { currentConversation } = this.props;
         return (
             <Wrapper>
-                {conversations[personality].conversations.slice(0, 4).map(conversation => (
+                {currentConversation.map(conversation => (
                     <ConversationRow
                         key={conversation.id}
                         onClick={() =>
@@ -41,11 +47,12 @@ class Questions extends Component {
 const mapStateToProps = state => ({
     id: state.conversation.id,
     personality: state.sidebar.label,
-    conversations: state.conversation.conversations
+    conversations: state.conversation.conversations,
+    currentConversation: state.conversation.currentConversation
 });
 
 const mapDispatchToProps = dispatch => ({
-    setConversation: id => dispatch(setConversation(id)),
+  setCurrentConversation: conversation => dispatch(setCurrentConversation(conversation)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);

@@ -1,4 +1,4 @@
-import { SET_ACTIVE_LABEL, SET_SIDEBAR_STATE, SET_CONVERSATION } from '../Types';
+import { SET_ACTIVE_LABEL, SET_SIDEBAR_STATE, SET_CURRENT_CONVERSATION } from '../Types';
 
 export function setActiveLabel(label) {
     return {
@@ -14,9 +14,9 @@ export function setSidebarState(open) {
     };
 }
 
-export function setConversation(conversation) {
+export function setCurrentConversation(conversation) {
   return {
-    type: SET_CONVERSATION,
+    type: SET_CURRENT_CONVERSATION,
     conversation,
   };
 }
