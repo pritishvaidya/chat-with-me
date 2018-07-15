@@ -36,9 +36,14 @@ class Questions extends Component {
             setMood,
             setSound,
         } = this.props;
-        const subsequentConversations = conversations[
+        let subsequentConversations = conversations[
             personality
         ].conversations.filter(conversation => conversation.parentId === id);
+
+      if (subsequentConversations.length === 0) {
+
+      }
+
         if (subsequentConversations.length > 0) {
             delay(0, () => {
                 setQuestion(question);
@@ -61,7 +66,7 @@ class Questions extends Component {
                     setMood(mood);
                     setSound(null);
                 })
-                .delay(5000, () => {
+                .delay(7000, () => {
                     setQuestion(null);
                     setCurrentConversation(subsequentConversations);
                     setAnswer(null);
