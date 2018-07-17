@@ -73,6 +73,26 @@ class PersonalityAvatar extends Component {
             .delay(75, () => this.blink());
     };
 
+    happy = () => {
+      const delay = Utils.delay;
+      const change = this.changeAnimationSequence;
+      // If any animation already running
+      if (this.currentAnimationSequence) {
+        this.currentAnimationSequence.cancel();
+      }
+
+      this.currentAnimationSequence = delay(5000, () => change(0, true))
+        .delay(25, () => change(1))
+        .delay(25, () => change(2))
+        .delay(25, () => change(3))
+        .delay(4000, () => change(4))
+        .delay(25, () => change(3))
+        .delay(25, () => change(2))
+        .delay(25, () => change(1))
+        .delay(25, () => change(0))
+        .delay(25, () => this.blink());
+    };
+
     render() {
         return (
             <AvatarWrapper ref={'avatar'}>
