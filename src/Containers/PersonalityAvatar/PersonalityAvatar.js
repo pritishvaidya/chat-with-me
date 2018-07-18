@@ -48,7 +48,7 @@ class PersonalityAvatar extends Component {
             animationSequenceImage:
                 seq === 0
                     ? this.animationImages.Normal
-                    : this.animationImages.Blinking[seq - 1],
+                    : this.animationImages.Angry[seq - 1],
         });
     };
 
