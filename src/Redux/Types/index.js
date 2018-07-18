@@ -6,3 +6,5 @@ export const SET_ANSWER = 'app/SET_ANSWER';
 export const SET_LOADER = 'app/SET_LOADER';
 export const SET_MOOD = 'app/SET_MOOD';
 export const SET_SOUND = 'app/SET_SOUND';
+export const SET_CONVERSATIONS = 'app/SET_CONVERSATIONS';
+

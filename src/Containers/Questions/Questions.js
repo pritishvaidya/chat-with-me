@@ -5,6 +5,12 @@ import styled from 'styled-components';
 import { Colors } from '../../Theme/Global';
 import { Paragraph } from '../../Theme/Theme';
 
+import Anime from '../../Data/Anime';
+import FlamencoGuitar from '../../Data/FlamencoGuitar';
+import MetalMusic from '../../Data/MetalMusic';
+import Professional from '../../Data/Professional';
+import MultiplayerGames from '../../Data/MultiplayerGames';
+
 import {
     setCurrentConversation,
     setQuestion,
@@ -12,9 +18,18 @@ import {
     setLoader,
     setMood,
     setSound,
+    setConversations,
 } from '../../Redux/Actions';
 import Utils from '../../Utils';
 import { fadeIn } from '../../Theme/Global';
+
+const InitialConversationState = {
+    professional: Professional,
+    metal: MetalMusic,
+    games: MultiplayerGames,
+    guitar: FlamencoGuitar,
+    anime: Anime,
+};
 
 class Questions extends Component {
     constructor(props) {
@@ -24,7 +39,7 @@ class Questions extends Component {
         };
     }
 
-    setConversations = (id, question, answer, mood, sound) => {
+    setConversations = (id, parentId, question, answer, mood, sound) => {
         const delay = Utils.delay;
         const {
             conversations,
@@ -35,46 +50,74 @@ class Questions extends Component {
             setLoader,
             setMood,
             setSound,
+            setConversations,
         } = this.props;
+
         let subsequentConversations = conversations[
             personality
         ].conversations.filter(conversation => conversation.parentId === id);
 
-      if (subsequentConversations.length === 0) {
+        const newConversations = JSON.parse(JSON.stringify(conversations));
 
-      }
+        if (subsequentConversations.length === 0) {
+            const filteredConversations = newConversations[
+                personality
+            ].conversations.filter(
+                conversation => conversation.id !== parentId
+            );
 
-        if (subsequentConversations.length > 0) {
-            delay(0, () => {
-                setQuestion(question);
-                setCurrentConversation([]);
-                setAnswer(null);
-            })
-                .delay(2000, () => {
-                    setQuestion(null);
-                    setCurrentConversation([]);
-                    setLoader(true);
-                })
-                .delay(1000, () => {
-                })
-                .delay(2000, () => {
-                    setQuestion(null);
-                    setCurrentConversation([]);
-                    setAnswer(answer);
-                    setLoader(false);
-                    setMood(mood);
-                    setSound(sound);
-                })
-                .delay(7000, () => {
-                    setQuestion(null);
-                    setCurrentConversation(subsequentConversations);
-                    setAnswer(null);
-                    setMood('normal');
-                    setSound(null);
-                });
-        } else {
-            // render new parents
+            const filteredParentConversations = newConversations[
+                personality
+            ].conversations.filter(
+                conversation =>
+                    conversation.id !== parentId && conversation.parentId === ''
+            );
+
+            // If the parents are available
+            if (filteredParentConversations.length > 0) {
+                newConversations[
+                    personality
+                ].conversations = filteredConversations;
+                subsequentConversations = filteredParentConversations.slice(
+                    0,
+                    4
+                );
+            } else {
+                newConversations[personality].conversations =
+                    InitialConversationState[personality].conversations;
+                subsequentConversations = InitialConversationState[
+                    personality
+                ].conversations.slice(0, 4);
+            }
+            setConversations(newConversations);
         }
+
+        delay(0, () => {
+            setQuestion(question);
+            setCurrentConversation([]);
+            setAnswer(null);
+        })
+            .delay(2000, () => {
+                setQuestion(null);
+                setCurrentConversation([]);
+                setLoader(true);
+            })
+            .delay(1000, () => {})
+            .delay(2000, () => {
+                setQuestion(null);
+                setCurrentConversation([]);
+                setAnswer(answer);
+                setLoader(false);
+                setMood(mood);
+                setSound(sound);
+            })
+            .delay(7000, () => {
+                setQuestion(null);
+                setCurrentConversation(subsequentConversations);
+                setAnswer(null);
+                setMood('normal');
+                setSound(null);
+            });
     };
 
     render() {
@@ -88,6 +131,7 @@ class Questions extends Component {
                         onClick={() =>
                             this.setConversations(
                                 conversation.id,
+                                conversation.parentId,
                                 conversation.question,
                                 conversation.answer,
                                 conversation.mood,
@@ -113,6 +157,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     setCurrentConversation: conversation =>
         dispatch(setCurrentConversation(conversation)),
+    setConversations: conversations =>
+        dispatch(setConversations(conversations)),
     setQuestion: question => dispatch(setQuestion(question)),
     setAnswer: answer => dispatch(setAnswer(answer)),
     setLoader: loading => dispatch(setLoader(loading)),

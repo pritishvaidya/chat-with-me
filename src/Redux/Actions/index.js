@@ -1,12 +1,13 @@
 import {
-    SET_ACTIVE_LABEL,
-    SET_SIDEBAR_STATE,
-    SET_CURRENT_CONVERSATION,
-    SET_QUESTION,
-    SET_ANSWER,
-    SET_LOADER,
-    SET_MOOD,
-    SET_SOUND
+  SET_ACTIVE_LABEL,
+  SET_SIDEBAR_STATE,
+  SET_CURRENT_CONVERSATION,
+  SET_QUESTION,
+  SET_ANSWER,
+  SET_LOADER,
+  SET_MOOD,
+  SET_SOUND,
+  SET_CONVERSATIONS
 } from '../Types';
 
 export function setActiveLabel(label) {
@@ -63,4 +64,11 @@ export function setSound(sound) {
     type: SET_SOUND,
     sound,
   };
+}
+
+export function setConversations(conversations) {
+  return {
+    type: SET_CONVERSATIONS,
+    conversations
+  }
 }

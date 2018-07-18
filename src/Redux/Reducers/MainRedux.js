@@ -6,7 +6,8 @@ import {
     SET_ANSWER,
     SET_LOADER,
     SET_MOOD,
-    SET_SOUND
+    SET_SOUND,
+    SET_CONVERSATIONS,
 } from '../Types';
 
 import Anime from '../../Data/Anime';
@@ -58,6 +59,8 @@ const conversation = (state = conversationState, action) => {
       return { ...state, mood: action.mood };
     } else if (action.type === SET_SOUND) {
       return { ...state, sound: action.sound };
+    } else if (action.type === SET_CONVERSATIONS) {
+      return { ...state, conversations: action.conversations };
     }
     return state;
 };

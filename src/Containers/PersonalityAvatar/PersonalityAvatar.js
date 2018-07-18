@@ -145,8 +145,6 @@ class PersonalityAvatar extends Component {
     };
 
     render() {
-        console.log(this.state);
-        console.log(this.state.animationSequenceImage);
         return (
             <AvatarWrapper ref={'avatar'}>
                 <ImageBackground src={this.animationImages.Background} />
