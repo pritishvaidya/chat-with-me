@@ -23,6 +23,7 @@ class PersonalityAvatar extends Component {
         this.state = {
             animationSequenceImage: Professional.Normal,
             label: props.label,
+            mood: props.mood,
         };
         this.currentAnimationSequence = null;
         this.animationImages = animationImages.professional;
@@ -39,16 +40,33 @@ class PersonalityAvatar extends Component {
                 label: nextProps.label,
             });
             this.animationImages = animationImages[nextProps.label];
+        } else if (nextProps.mood !== this.state.mood) {
+            this.setState(
+                {
+                    mood: nextProps.mood,
+                },
+                () => this.doAnimation(nextProps.mood)
+            );
         }
         return true;
     }
 
     changeAnimationSequence = (seq, start) => {
+        let defaultAnimationImageTag;
+        const { mood } = this.props;
+
+        if (mood === 'happy') {
+            defaultAnimationImageTag = 'Happy';
+        } else if (mood === 'angry') {
+            defaultAnimationImageTag = 'Angry';
+        } else {
+            defaultAnimationImageTag = 'Blinking';
+        }
         this.setState({
             animationSequenceImage:
                 seq === 0
                     ? this.animationImages.Normal
-                    : this.animationImages.Angry[seq - 1],
+                    : this.animationImages[defaultAnimationImageTag][seq - 1],
         });
     };
 
@@ -74,26 +92,61 @@ class PersonalityAvatar extends Component {
     };
 
     happy = () => {
-      const delay = Utils.delay;
-      const change = this.changeAnimationSequence;
-      // If any animation already running
-      if (this.currentAnimationSequence) {
-        this.currentAnimationSequence.cancel();
-      }
+        const delay = Utils.delay;
+        const change = this.changeAnimationSequence;
 
-      this.currentAnimationSequence = delay(5000, () => change(0, true))
-        .delay(25, () => change(1))
-        .delay(25, () => change(2))
-        .delay(25, () => change(3))
-        .delay(4000, () => change(4))
-        .delay(25, () => change(3))
-        .delay(25, () => change(2))
-        .delay(25, () => change(1))
-        .delay(25, () => change(0))
-        .delay(25, () => this.blink());
+        // If any animation already running
+        if (this.currentAnimationSequence) {
+            this.currentAnimationSequence.cancel();
+        }
+
+        this.currentAnimationSequence = delay(0, () => change(0, true))
+            .delay(25, () => change(1))
+            .delay(25, () => change(2))
+            .delay(25, () => change(3))
+            .delay(25, () => change(4))
+            .delay(2000, () => change(3))
+            .delay(25, () => change(2))
+            .delay(25, () => change(1))
+            .delay(25, () => change(0))
+            .delay(25, () => this.blink());
+    };
+
+    angry = () => {
+        const delay = Utils.delay;
+        const change = this.changeAnimationSequence;
+
+        // If any animation already running
+        if (this.currentAnimationSequence) {
+            this.currentAnimationSequence.cancel();
+        }
+
+        this.currentAnimationSequence = delay(0, () => change(0, true))
+            .delay(25, () => change(1))
+            .delay(25, () => change(2))
+            .delay(25, () => change(3))
+            .delay(25, () => change(4))
+            .delay(2000, () => change(3))
+            .delay(25, () => change(2))
+            .delay(25, () => change(1))
+            .delay(25, () => change(0))
+            .delay(25, () => this.blink());
+    };
+
+    doAnimation = mood => {
+        switch (mood) {
+            case 'happy':
+                return this.happy();
+            case 'angry':
+                return this.angry();
+            default:
+                return this.blink();
+        }
     };
 
     render() {
+        console.log(this.state);
+        console.log(this.state.animationSequenceImage);
         return (
             <AvatarWrapper ref={'avatar'}>
                 <ImageBackground src={this.animationImages.Background} />
@@ -105,6 +158,7 @@ class PersonalityAvatar extends Component {
 
 const mapStateToProps = state => ({
     label: state.sidebar.label,
+    mood: state.conversation.mood,
 });
 
 const mapDispatchToProps = dispatch => ({});

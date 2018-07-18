@@ -56,7 +56,6 @@ class Questions extends Component {
                     setLoader(true);
                 })
                 .delay(1000, () => {
-                  setSound(sound);
                 })
                 .delay(2000, () => {
                     setQuestion(null);
@@ -64,13 +63,14 @@ class Questions extends Component {
                     setAnswer(answer);
                     setLoader(false);
                     setMood(mood);
-                    setSound(null);
+                    setSound(sound);
                 })
                 .delay(7000, () => {
                     setQuestion(null);
                     setCurrentConversation(subsequentConversations);
                     setAnswer(null);
                     setMood('normal');
+                    setSound(null);
                 });
         } else {
             // render new parents
