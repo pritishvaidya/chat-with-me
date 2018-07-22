@@ -179,7 +179,10 @@ const ConversationRow = styled.div`
   border-bottom: 1px solid ${Colors.Separator};
   display: flex;
   flex-direction: column
-  text-align: center 
+  text-align: center
+  align-items: center
+  justify-content: center
   padding-left: 30px
   padding-right: 30px
+  max-height: ${window.innerHeight * 0.1 - 1}px
 `;
