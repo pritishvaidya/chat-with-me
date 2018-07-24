@@ -161,7 +161,7 @@ export default {
             parentId: '2',
             question: 'What applications have you developed until now?',
             answer:
-                "A list of applications are visible on my wesite's portfolio",
+                "A list of applications are visible on my website's portfolio",
             mood: 'normal',
             sound: 'okay',
         },
