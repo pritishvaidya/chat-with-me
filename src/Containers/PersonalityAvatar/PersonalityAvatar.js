@@ -21,12 +21,12 @@ class PersonalityAvatar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            animationSequenceImage: Professional.Normal,
+            animationSequenceImage: animationImages[props.label].Normal,
             label: props.label,
             mood: props.mood,
         };
         this.currentAnimationSequence = null;
-        this.animationImages = animationImages.professional;
+        this.animationImages = animationImages[props.label];
     }
 
     componentDidMount() {
