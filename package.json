@@ -26,7 +26,8 @@
     "test": "node scripts/test.js --env=jsdom",
     "lint": "eslint **/*.{js,jsx} --quiet",
     "serve": "serve -s build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "serve:prod": "node scripts/build.js && serve -s build"
   },
   "jest": {
     "collectCoverageFrom": [

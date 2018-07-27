@@ -149,6 +149,22 @@ class PersonalityAvatar extends Component {
             <AvatarWrapper ref={'avatar'}>
                 <ImageBackground src={this.animationImages.Background} />
                 <Image src={this.state.animationSequenceImage} />
+
+                {/*TODO: check for the webpack issue*/}
+                <ImageHidden src={this.animationImages.Blinking[0]} />
+                <ImageHidden src={this.animationImages.Blinking[1]} />
+                <ImageHidden src={this.animationImages.Blinking[2]} />
+                <ImageHidden src={this.animationImages.Blinking[3]} />
+
+                <ImageHidden src={this.animationImages.Happy[0]} />
+                <ImageHidden src={this.animationImages.Happy[1]} />
+                <ImageHidden src={this.animationImages.Happy[2]} />
+                <ImageHidden src={this.animationImages.Happy[3]} />
+
+                <ImageHidden src={this.animationImages.Angry[0]} />
+                <ImageHidden src={this.animationImages.Angry[1]} />
+                <ImageHidden src={this.animationImages.Angry[2]} />
+                <ImageHidden src={this.animationImages.Angry[3]} />
             </AvatarWrapper>
         );
     }
@@ -185,4 +201,11 @@ const Image = styled.img`
     right: 0;
     left: 0;
     height: ${window.innerHeight * 0.5}px;
+`;
+
+const ImageHidden = styled.img`
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+    width: 0;
 `;

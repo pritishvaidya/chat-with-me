@@ -30,6 +30,7 @@ type State = {
     pullRight: boolean,
     touchHandleWidth: number,
     dragToggleDistance: number,
+
 };
 
 class RootContainer extends Component<Props, State> {

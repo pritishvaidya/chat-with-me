@@ -16,10 +16,10 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, Reducer)
 
-const middleware = applyMiddleware(logger);
+const middleware = applyMiddleware();
 
 export default function configureStore() {
   const store = createStore(persistedReducer, middleware);
-  let persistor = persistStore(store)
+  const persistor = persistStore(store)
   return { store, persistor };
 }

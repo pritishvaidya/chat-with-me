@@ -4,8 +4,8 @@ import Spinner from 'react-spinkit';
 
 // Redux
 import { Provider } from 'react-redux';
-import configureStore from './Redux/configureStore';
 import { PersistGate } from 'redux-persist/integration/react';
+import configureStore from './Redux/configureStore';
 
 // Components
 import RootContainer from './Containers/RootContainer';
