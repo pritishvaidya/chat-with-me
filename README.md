@@ -1,5 +1,5 @@
 ## Introduction
-This repository provides with the structure used to build [Chat With Me](http://pritishvaidya.com/chat-with-me).
+This repository provides with the structure used to build [Chat With Me](https://pritishvaidya.github.io/chat-with-me).
 
 This repository highlights my personalities. You can ask the questions and I'll respond you with my answers.
 
